@@ -482,6 +482,7 @@ class Sign(object):
     def __init__(self, gpg):
         self.gpg = gpg
         self.type = None
+        self.hash_algo = None
         self.fingerprint = None
 
     def __nonzero__(self):
@@ -500,7 +501,7 @@ class Sign(object):
             pass
         elif key == "SIG_CREATED":
             (self.type,
-             algo, hashalgo, cls,
+             algo, self.hash_algo, cls,
              self.timestamp, self.fingerprint
              ) = value.split()
         else:
